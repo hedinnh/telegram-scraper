@@ -42,7 +42,7 @@ pip install -r requirements.txt
 Run the scraper with:
 
 ```bash
-python telegram_scraper.py --name YOUR_SESSION_NAME --api_id YOUR_API_ID --api_hash YOUR_API_HASH --db_password YOUR_MYSQL_PASSWORD
+python telegram_scraper.py --name YOUR_SESSION_NAME --api_id YOUR_API_ID --api_hash YOUR_API_HASH
 ```
 
 ### Command line arguments:
@@ -50,16 +50,18 @@ python telegram_scraper.py --name YOUR_SESSION_NAME --api_id YOUR_API_ID --api_h
 - `--name` (required): The session file name (without .session extension)
 - `--api_id` (optional): Your Telegram API ID
 - `--api_hash` (optional): Your Telegram API hash
-- `--db_password` (required): MySQL password
-- `--db_host` (optional): MySQL host (default: localhost)
-- `--db_user` (optional): MySQL user (default: root)
+- `--db_password` (optional): MySQL password (default: configured)
+- `--db_host` (optional): MySQL host (default: 89.28.236.32)
+- `--db_user` (optional): MySQL user (default: hedinn)
 - `--db_port` (optional): MySQL port (default: 3306)
 
 ### Example:
 
 ```bash
-python telegram_scraper.py --name myaccount --api_id 12345 --api_hash abcdef123456 --db_password mypassword
+python telegram_scraper.py --name myaccount --api_id 12345 --api_hash abcdef123456
 ```
+
+Note: The script is pre-configured with remote MySQL server credentials, so you don't need to specify database parameters unless you want to use a different server.
 
 ## Important Notes
 
@@ -84,20 +86,20 @@ The scraper creates a `scraper.log` file with detailed information about the scr
 A separate `view_data.py` script is included to easily view and export the scraped data:
 
 ```bash
-# Show summary statistics
-python view_data.py --db_password YOUR_PASSWORD --summary
+# Show summary statistics (uses pre-configured database)
+python view_data.py --summary
 
 # List all channels with user counts
-python view_data.py --db_password YOUR_PASSWORD --channels
+python view_data.py --channels
 
 # Search for users by name or username
-python view_data.py --db_password YOUR_PASSWORD --search "john"
+python view_data.py --search "john"
 
 # Show users from a specific channel
-python view_data.py --db_password YOUR_PASSWORD --channel "ChannelName"
+python view_data.py --channel "ChannelName"
 
 # Export all users to CSV
-python view_data.py --db_password YOUR_PASSWORD --export users.csv
+python view_data.py --export users.csv
 ```
 
 ## Database Queries

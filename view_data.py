@@ -227,9 +227,9 @@ class DataViewer:
 
 def main():
     parser = argparse.ArgumentParser(description='View Telegram scraper data')
-    parser.add_argument('--db_host', type=str, default='localhost', help='MySQL host')
-    parser.add_argument('--db_user', type=str, default='root', help='MySQL user')
-    parser.add_argument('--db_password', type=str, required=True, help='MySQL password')
+    parser.add_argument('--db_host', type=str, default='89.28.236.32', help='MySQL host')
+    parser.add_argument('--db_user', type=str, default='hedinn', help='MySQL user')
+    parser.add_argument('--db_password', type=str, default='Fxp.123456', help='MySQL password')
     parser.add_argument('--db_port', type=int, default=3306, help='MySQL port')
     
     # Commands

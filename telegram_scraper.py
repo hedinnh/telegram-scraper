@@ -312,19 +312,15 @@ async def main():
     parser.add_argument('--name', type=str, required=True, help='The username of the telegram user')
     parser.add_argument('--api_id', type=int, required=False, help='The user_id of the telegram user')
     parser.add_argument('--api_hash', type=str, required=False, help='The api_hash of the telegram user')
-    parser.add_argument('--db_host', type=str, default='89.28.236.32', help='MySQL host')
-    parser.add_argument('--db_user', type=str, default='hedinn', help='MySQL user')
-    parser.add_argument('--db_password', type=str, default='Fxp.123456', help='MySQL password')
-    parser.add_argument('--db_port', type=int, default=3306, help='MySQL port')
     
     args = parser.parse_args()
     
-    # Database configuration
+    # Hardcoded database configuration
     db_config = {
-        'host': args.db_host,
-        'user': args.db_user,
-        'password': args.db_password,
-        'port': args.db_port,
+        'host': '89.28.236.32',
+        'user': 'hedinn',
+        'password': 'Fxp.123456',
+        'port': 3306,
         'charset': 'utf8mb4',
         'autocommit': False
     }

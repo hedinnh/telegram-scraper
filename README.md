@@ -50,10 +50,6 @@ python telegram_scraper.py --name YOUR_SESSION_NAME --api_id YOUR_API_ID --api_h
 - `--name` (required): The session file name (without .session extension)
 - `--api_id` (optional): Your Telegram API ID
 - `--api_hash` (optional): Your Telegram API hash
-- `--db_password` (optional): MySQL password (default: configured)
-- `--db_host` (optional): MySQL host (default: 89.28.236.32)
-- `--db_user` (optional): MySQL user (default: hedinn)
-- `--db_port` (optional): MySQL port (default: 3306)
 
 ### Example:
 
@@ -61,7 +57,11 @@ python telegram_scraper.py --name YOUR_SESSION_NAME --api_id YOUR_API_ID --api_h
 python telegram_scraper.py --name myaccount --api_id 12345 --api_hash abcdef123456
 ```
 
-Note: The script is pre-configured with remote MySQL server credentials, so you don't need to specify database parameters unless you want to use a different server.
+Note: The MySQL server connection is hardcoded and will automatically:
+- Connect to the remote server at 89.28.236.32
+- Use credentials (user: hedinn, password: Fxp.123456)
+- Create the `telescrape` database if it doesn't exist
+- Create all necessary tables with proper columns
 
 ## Important Notes
 

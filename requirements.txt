@@ -1,0 +1,6 @@
+telethon
+pymysql
+argparse
+asyncio
+cryptg
+tabulate

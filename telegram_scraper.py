@@ -32,12 +32,30 @@ class TelegramScraper:
     async def connect_telegram(self):
         """Connect to Telegram using existing session file"""
         try:
-            # Use the session name provided
-            self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
+            # Check if session file exists
+            session_file = f"{self.session_name}.session"
+            if os.path.exists(session_file):
+                logger.info(f"Found session file: {session_file}")
+            else:
+                logger.warning(f"Session file {session_file} not found in current directory")
+                logger.info(f"Current directory: {os.getcwd()}")
+                logger.info(f"Files in directory: {os.listdir('.')}")
+            
+            # Use the session name provided (Telethon will add .session automatically)
+            self.client = TelegramClient(
+                self.session_name, 
+                self.api_id, 
+                self.api_hash,
+                connection_retries=5,
+                retry_delay=1
+            )
+            
+            logger.info(f"Attempting to connect with session: {self.session_name}")
             await self.client.connect()
             
             if not await self.client.is_user_authorized():
                 logger.error(f"Session {self.session_name} is not authorized. Please login first.")
+                logger.info("To create a new session, run the client once interactively")
                 return False
                 
             me = await self.client.get_me()
@@ -46,6 +64,9 @@ class TelegramScraper:
             
         except Exception as e:
             logger.error(f"Failed to connect to Telegram: {e}")
+            logger.error(f"Session file path: {self.session_name}.session")
+            logger.error(f"API ID: {self.api_id}")
+            logger.error(f"API Hash provided: {'Yes' if self.api_hash else 'No'}")
             return False
     
     def connect_database(self):
